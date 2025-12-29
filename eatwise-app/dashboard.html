@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EatWise | AI Health Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">🍏 EatWise</h2>
+
+    <button class="nav-btn active" data-view="assistant">🤖 Assistant</button>
+    <button class="nav-btn" data-view="discover">✨ Discover</button>
+    <button class="nav-btn" data-view="calories">🔥 Calories</button>
+
+    <button id="darkToggle" class="dark-btn">🌙 Dark Mode</button>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <h2>Welcome! 👋</h2>
+      <div class="profile">
+  👤 <span id="profileName">User</span> ·
+  <span id="profileAge">-- yrs</span>
+</div>
+
+    </header>
+
+    <!-- ASSISTANT -->
+    <section id="assistant" class="view active">
+      <div class="card">
+        <h3>🤖 EatBot — Your Health AI</h3>
+        <p class="muted">Upload a food image or label to analyze calories & health impact</p>
+
+        <div id="dropZone" class="upload-box">
+          <input type="file" accept="image/*" />
+          <strong>Drag & drop</strong> food image here<br />
+          <span class="muted">or click to upload</span>
+        </div>
+
+        <div class="chat-area">
+          <div class="bot-msg">
+            👋 Hi, I’m <b>EatBot</b>. Upload a food image or label to begin.
+          </div>
+        </div>
+
+        <div class="chat-controls">
+          <input type="text" placeholder="Ask about ingredients, calories…" />
+          <button class="btn">Send</button>
+        </div>
+
+        <button class="btn add">➕ Add to Today’s Calorie Tracker</button>
+      </div>
+    </section>
+
+    <!-- DISCOVER -->
+    <section id="discover" class="view">
+  <div class="card">
+    <h3>✨ Discover (Personalized for You)</h3>
+    <p class="muted">Smart nutrition advice based on your profile</p>
+
+    <!-- HEALTH TIPS -->
+    <div class="discover-grid">
+      <div class="tip-card">⚡ Iron & protein-rich foods help reduce fatigue</div>
+      <div class="tip-card">🥗 Prefer high-fiber foods today</div>
+      <div class="tip-card">💧 Stay hydrated — aim for 8 glasses</div>
+    </div>
+
+    <!-- SNACKS + RECIPES -->
+    <h4 class="section">🥙 Healthy Snacks & Quick Recipes</h4>
+
+    <div class="snack-grid">
+
+      <div class="snack card-mini">
+        <h5>🥚 Boiled Eggs</h5>
+        <p class="muted">140 kcal · High protein</p>
+        <details>
+          <summary>Quick Recipe</summary>
+          <p>
+            Boil eggs for 7–8 minutes. Sprinkle salt & pepper.
+            Optional: add veggies on the side.
+          </p>
+        </details>
+      </div>
+
+      <div class="snack card-mini">
+        <h5>🍌 Banana Smoothie</h5>
+        <p class="muted">180 kcal · Energy boost</p>
+        <details>
+          <summary>Quick Recipe</summary>
+          <p>
+            Blend banana + milk + dates.
+            Optional: add peanut butter for protein.
+          </p>
+        </details>
+      </div>
+
+      <div class="snack card-mini">
+        <h5>🥜 Peanut Butter Toast</h5>
+        <p class="muted">200 kcal · Healthy fats</p>
+        <details>
+          <summary>Quick Recipe</summary>
+          <p>
+            Toast whole wheat bread.
+            Spread natural peanut butter.
+          </p>
+        </details>
+      </div>
+
+    </div>
+
+    <!-- BLOG LINKS -->
+    <h4 class="section">📚 Trusted Reads</h4>
+    <ul class="links">
+      <li><a href="https://www.healthline.com/nutrition" target="_blank">Healthline Nutrition</a></li>
+      <li><a href="https://www.eatingwell.com" target="_blank">EatingWell</a></li>
+      <li><a href="https://www.hsph.harvard.edu/nutritionsource/" target="_blank">Harvard Nutrition Source</a></li>
+    </ul>
+  </div>
+</section>
+
+
+  </main>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

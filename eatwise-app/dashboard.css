@@ -1,0 +1,386 @@
+/* =====================
+   VARIABLES
+===================== */
+
+:root {
+  --bg: #f5fff8;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #22c55e;
+  --sidebar: #0f172a;
+  --border: #e5e7eb;
+}
+
+body.dark {
+  --bg: #020617;
+  --card: #020617;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --sidebar: #020617;
+  --border: #334155;
+}
+
+/* =====================
+   RESET
+===================== */
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #dcfce7, #fff7ed);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+body.dark {
+  background: radial-gradient(circle at top, #020617, #000);
+}
+
+/* =====================
+   LAYOUT
+===================== */
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =====================
+   SIDEBAR
+===================== */
+
+.sidebar {
+  width: 230px;
+  background: var(--sidebar);
+  color: #fff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.nav-btn {
+  border: none;
+  background: transparent;
+  color: #cbd5f5;
+  padding: 12px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(34, 197, 94, 0.18);
+  color: var(--primary);
+}
+
+.dark-btn {
+  margin-top: auto;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #1e293b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dark-btn:hover {
+  background: #334155;
+}
+
+/* =====================
+   MAIN
+===================== */
+
+.main {
+  flex: 1;
+  padding: 32px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.profile {
+  font-weight: 600;
+}
+
+/* =====================
+   VIEWS
+===================== */
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+  animation: fadeUp 0.45s ease;
+}
+
+/* =====================
+   CARD BASE
+===================== */
+
+.card {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 26px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+/* =====================
+   EATBOT
+===================== */
+
+.chat-area {
+  background: #f1f5f9;
+  border-radius: 14px;
+  padding: 16px;
+  margin: 18px 0;
+}
+
+.bot-msg {
+  background: #dcfce7;
+  padding: 14px 18px;
+  border-radius: 14px;
+  max-width: 75%;
+}
+
+.chat-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.chat-controls input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(34,197,94,0.4);
+}
+
+.add {
+  margin-top: 16px;
+}
+
+/* =====================
+   UPLOAD
+===================== */
+
+.upload-box {
+  border: 2px dashed var(--primary);
+  border-radius: 18px;
+  padding: 26px;
+  text-align: center;
+  cursor: pointer;
+  margin: 16px 0;
+  transition: all 0.3s ease;
+}
+
+.upload-box.drag {
+  background: rgba(34,197,94,0.12);
+  box-shadow: 0 0 0 6px rgba(34,197,94,0.25);
+}
+
+.upload-box input {
+  display: none;
+}
+
+/* =====================
+   DISCOVER
+===================== */
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.tip-card {
+  background: #ecfeff;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 500;
+}
+
+.section {
+  margin-top: 30px;
+  font-weight: 700;
+}
+
+.snack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card-mini {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+.card-mini h5 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.card-mini details summary {
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.card-mini details p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* =====================
+   LINKS
+===================== */
+
+.links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.links li {
+  margin: 10px 0;
+}
+
+.links a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   DARK MODE FIXES
+===================== */
+
+body.dark .chat-area {
+  background: #020617;
+}
+
+body.dark .bot-msg {
+  background: #052e16;
+  color: #dcfce7;
+}
+
+body.dark input {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+body.dark input::placeholder {
+  color: #94a3b8;
+}
+
+body.dark .upload-box {
+  background: #020617;
+}
+
+/* =====================
+   ANIMATIONS
+===================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+}
+/* =========================
+   DARK MODE — DISCOVER FIX
+   ========================= */
+
+body.dark .discover-card {
+  background: #020617;           /* dark surface */
+  border: 1px solid #1e293b;
+  color: #f9fafb;                /* readable text */
+}
+
+body.dark .discover-card b {
+  color: #ffffff;
+}
+
+body.dark .discover-card span,
+body.dark .discover-card p {
+  color: #e5e7eb;
+}
+
+/* Top personalized tips (pill cards) */
+body.dark .discover-grid > div {
+  background: #020617;
+  color: #f9fafb;
+  border: 1px solid #1e293b;
+}
+
+/* Fix faded emoji + text */
+body.dark .discover-grid > div {
+  opacity: 1;
+}
+
+/* Trusted links */
+body.dark .discover a {
+  color: #4ade80;
+}
+
+body.dark .discover a:hover {
+  text-decoration: underline;
+}
+
+/* Section subtitle */
+body.dark .subtitle {
+  color: #cbd5f5;
+}
