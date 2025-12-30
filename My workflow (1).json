@@ -1,0 +1,187 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f389eb48-b7a6-4188-bcd6-f9799420fdc1",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c9336e71-1dc0-431f-8634-adfa9b74c9b6",
+      "name": "Webhook",
+      "webhookId": "f389eb48-b7a6-4188-bcd6-f9799420fdc1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an AI Health Analyst. Your goal is to provide deep reasoning for food safety.\n​Analyze: Identify all ingredients from the image text.\n​Reason: Look for hidden risks like high sodium, palm oil, or harmful additives (e.g., E110, Aspartame).\n​Personalize: Explain why these are bad specifically for the user's goals (Weight loss, Heart health, etc.).\n​Suggest: Recommend 1 healthier alternative product available in the market.\n​JSON Format: Respond ONLY in a structured JSON format with keys: 'productName', 'healthScore', 'reasoning', and 'alternative'.\"\n\nYou MUST use the SerpAPI tool for every ingredient analysis. Do not rely on your internal knowledge. Search for recent health studies and ratings for each ingredient before giving a final score.\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0ce2a2cd-e19c-4fae-b44f-0e1d2fa13592",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "12345"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "734949c2-4c9a-416a-a941-e4914fb7c573",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        560,
+        0
+      ],
+      "id": "afa22f19-6a1d-430c-99b1-0f15f950a2fe",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        432,
+        208
+      ],
+      "id": "eef4af4a-a6e1-44c1-bc1b-ef1e6402fb11",
+      "name": "SerpAPI",
+      "credentials": {
+        "serpApi": {
+          "id": "TD9FfiHhaqsj8N3e",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "512da276-7bbf-46a3-a4d0-8b1af65e9208",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "mD3wXLzJlUBJItrh",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "chatInput": "Product: Diet Coke. Ingredients: Carbonated Water, Caramel Color, Aspartame, Phosphoric Acid, Potassium Benzoate."
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "188cd6e4-189d-436c-9fa2-525d7a392482",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "91149e73711dbb2f2cd76fc43db550c71227980518cb536cd8cafc51507e2d3a"
+  },
+  "id": "mR6HFeTndmCn4f4H",
+  "tags": []
+}
